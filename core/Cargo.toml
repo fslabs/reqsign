@@ -30,10 +30,15 @@ rust-version.workspace = true
 [features]
 default = []
 jwt = ["dep:rsa", "dep:serde", "dep:serde_json"]
+# Compute the `hash` module's digests and HMACs with AWS-LC instead of RustCrypto.
+aws-lc-rs = ["dep:aws-lc-rs", "aws-lc-rs/aws-lc-sys"]
+# As `aws-lc-rs`, using the AWS-LC FIPS module.
+aws-lc-rs-fips = ["dep:aws-lc-rs", "aws-lc-rs/fips"]
 
 [dependencies]
 anyhow = { workspace = true }
 asyncband = { workspace = true }
+aws-lc-rs = { workspace = true, optional = true }
 base64 = { workspace = true }
 bytes = { workspace = true }
 hex = { workspace = true }
